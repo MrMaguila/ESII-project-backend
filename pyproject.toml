@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "esii-project-backend"
+version = "0.1.0"
+description = ""
+authors = ["MrMaguila <gabrielgf6000@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+SQLAlchemy = "^2.0.23"
+sqlalchemy-utils = "^0.41.1"
+pymysql = "^1.1.0"
+alembic = "^1.12.1"
+flask = "^3.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,33 @@
+services:
+    mysql:
+        image: mysql:5.6
+        restart: unless-stopped
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: ESII-project
+        volumes:
+            - /var/lib/mysql56-data:/var/lib/mysql
+        networks:
+            - default-net
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+    back-end:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./:/app
+        networks:
+            - default-net
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        command: "poetry run flask --app src run --debug --host=0.0.0.0"
+
+networks:
+    default-net:
+        ipam:
+            config:
+                - subnet: "172.90.0.1/16"
